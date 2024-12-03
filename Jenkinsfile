@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'linux-node' }  
+    agent any
     stages {
         stage('Build Image') {
             steps {  
