@@ -1,19 +1,14 @@
 pipeline {
     agent { label 'linux-node' }
+
     stages {
-        stage('Build') {
+        stage('Build and Run Container') {
             steps {
-                script {  
-                    docker.build('node-webapp:latest')
-                }
-            }
-        }
-        stage(‘Run Container) {
-            steps {
-                script {
-                    docker.image('node-webapp:latest').run('-d -p 3000:3000')
-                }
-            }
+                script {
+                    docker.build('node-webapp:latest')
+                    docker.image('node-webapp:latest').run('-d -p 3000:3000')
+                }
+            }
         }
     }
 }
